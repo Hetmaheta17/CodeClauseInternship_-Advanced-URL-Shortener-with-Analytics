@@ -1,0 +1,6 @@
+<h2>Shorten a URL</h2>
+<form method="post">
+    {% csrf_token %}
+    <input type="url" name="url" placeholder="Enter your URL" required>
+    <button type="submit" class="btn btn-primary">Shorten</button>
+</form>

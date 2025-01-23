@@ -1,0 +1,60 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | URL Shortener</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% tailwind_css %}
+</head>
+<body class="bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 min-h-screen flex items-center justify-center">
+
+    <div class="bg-white rounded-lg shadow-2xl p-10 max-w-lg w-full sm:max-w-md md:max-w-lg lg:max-w-xl">
+        <h1 class="text-4xl font-extrabold text-gray-900 tracking-tight">
+            <span class="text-gray-700">Login to Your</span> <br>
+            <span class="text-blue-600 underline">URL Shortener Account</span>
+        </h1>
+        <p class="text-gray-500 mt-4 text-lg leading-relaxed">
+            Welcome back! Please log in to continue managing your links.
+        </p>
+
+        <form method="post" class="mt-8 space-y-6">
+            {% csrf_token %}
+            
+            <!-- Username Field -->
+            <div class="space-y-2">
+                <label for="id_username" class="block text-left font-semibold text-gray-700">Username</label>
+                {{ form.username }}
+                {% for error in form.username.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <!-- Password Field -->
+            <div class="space-y-2">
+                <label for="id_password" class="block text-left font-semibold text-gray-700">Password</label>
+                {{ form.password }}
+                {% for error in form.password.errors %}
+                    <p class="text-red-500 text-sm mt-1">{{ error }}</p>
+                {% endfor %}
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" 
+                class="w-full py-3 px-6 rounded-lg font-medium text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 ease-in-out">
+                Login
+            </button>
+        </form>
+
+        <!-- Register Link -->
+        <p class="mt-6 text-gray-600">
+            Don't have an account? 
+            <a href="{% url 'register' %}" class="text-blue-500 font-semibold hover:underline">
+                Register here
+            </a>
+        </p>
+    </div>
+
+</body>
+</html>
